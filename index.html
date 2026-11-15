@@ -180,6 +180,7 @@ main{position:relative;z-index:1}
   .cta,.cue i{animation:none}
   .cue i{transform:none}
 }
+#fx{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:55;font:inherit;font-size:.82rem;font-weight:700;color:var(--ink);background:var(--green);border:0;border-radius:99px;padding:.55em 1.1em;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.5)}
 html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
 </style>
 </head>
@@ -343,6 +344,7 @@ html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
   </section>
 </main>
 
+<button id="fx" type="button" hidden>화면 효과 켜기</button>
 <script>
 (function(){
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -354,7 +356,9 @@ html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
   var paras=[].slice.call(document.querySelectorAll('.para'));
   paras.forEach(function(p){p._ls=[].slice.call(p.querySelectorAll('.ln'));});
   function cl(v){return v<0?0:(v>1?1:v);}
-  if(reduce){ document.documentElement.classList.add('rm'); paras.forEach(function(p){p._ls.forEach(function(l){l.style.setProperty('--l','1');});}); }
+  var fx=document.getElementById('fx');
+  fx.addEventListener('click',function(){ reduce=false; document.documentElement.classList.remove('rm'); fx.hidden=true; frame(); });
+  if(reduce){ fx.hidden=false; document.documentElement.classList.add('rm'); paras.forEach(function(p){p._ls.forEach(function(l){l.style.setProperty('--l','1');});}); }
 
   /* halftone field: dots grow away from a focus point, ripple with scroll */
   var cv=document.getElementById('dots'), cx=cv.getContext('2d'), W=0,H=0,dpr=1;
