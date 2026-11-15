@@ -344,10 +344,11 @@ html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
   </section>
 </main>
 
-<button id="fx" type="button" hidden>화면 효과 켜기</button>
+<button id="fx" type="button" hidden>화면 효과 끄기</button>
 <script>
 (function(){
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var osReduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var reduce = false; /* effects are on by default; people whose device asks for less motion get an off switch */
   var bar=document.getElementById('bar'), prog=document.getElementById('prog');
   var lits=[].slice.call(document.querySelectorAll('[data-lit]'));
   var bubs=[].slice.call(document.querySelectorAll('.bub'));
@@ -357,8 +358,18 @@ html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
   paras.forEach(function(p){p._ls=[].slice.call(p.querySelectorAll('.ln'));});
   function cl(v){return v<0?0:(v>1?1:v);}
   var fx=document.getElementById('fx');
-  fx.addEventListener('click',function(){ reduce=false; document.documentElement.classList.remove('rm'); fx.hidden=true; frame(); });
-  if(reduce){ fx.hidden=false; document.documentElement.classList.add('rm'); paras.forEach(function(p){p._ls.forEach(function(l){l.style.setProperty('--l','1');});}); }
+  function setCalm(on){
+    reduce=on; document.documentElement.classList.toggle('rm',on);
+    if(on){
+      heroMain.style.transform=''; heroMain.style.opacity=''; heroBrand.style.opacity='';
+      bubs.forEach(function(x){x.style.transform='';});
+      paras.forEach(function(p){p.style.opacity='';p.style.transform='';p.style.visibility='';p._ls.forEach(function(l){l.style.setProperty('--l','1');});});
+    }
+    fx.textContent = on ? '화면 효과 켜기' : '화면 효과 끄기';
+    frame();
+  }
+  if(osReduce){ fx.hidden=false; }
+  fx.addEventListener('click',function(){ setCalm(!reduce); });
 
   /* halftone field: dots grow away from a focus point, ripple with scroll */
   var cv=document.getElementById('dots'), cx=cv.getContext('2d'), W=0,H=0,dpr=1;
