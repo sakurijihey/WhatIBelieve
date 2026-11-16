@@ -142,11 +142,14 @@ main{position:relative;z-index:1}
 .info{max-width:560px;margin-inline:auto;display:grid;gap:0}
 .info div{display:grid;grid-template-columns:6.2em 1fr;gap:12px;padding:1em 0;border-bottom:1px solid var(--line)}
 .info dt{color:var(--green);font-weight:700}
-.info dd{margin:0}
+.info dd{margin:0;min-width:0}
 .info dd small{display:block;color:var(--dim);font-size:.82rem}
 .price{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums}
 .price b{white-space:nowrap}
 .price+.price{margin-top:.9rem}
+.price.event{padding:.8rem .75rem;gap:8px;border:1.5px solid var(--green);border-radius:12px;background:rgba(24,226,76,.08);align-items:center}
+.price.event em{margin-left:0;display:inline-block}
+.price.event b{color:var(--green);font-size:1.05rem}
 .price em{font-style:normal;color:var(--green);font-size:.85rem;margin-left:.3em}
 
 /* team */
@@ -305,10 +308,11 @@ html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
         <div><dt>기간</dt><dd>2026.11.29(일) – 12.06(일)<small>월요일 휴연 · 러닝타임 80분</small></dd></div>
         <div><dt>장소</dt><dd>삼일로창고극장<small>서울 중구 삼일대로9길 12</small></dd></div>
         <div><dt>티켓</dt><dd>
+          <span class="price event" id="evt" hidden><span><span style="white-space:nowrap">오픈 이벤트 특가</span> <em>30% 할인</em><small>11.17 12시 ~<br>11.18 12시 예매 시</small></span><b>21,000원</b></span>
           <span class="price"><span>정가</span><b>30,000원</b></span>
           <span class="price"><span>학생·직장인 <em>10% 할인</em><small>학생증 또는 사원증 지참</small></span><b>27,000원</b></span>
           <span class="price"><span>예술인패스 <em>15% 할인</em></span><b>25,000원</b></span>
-          <span class="price"><span>재관람 <em>50% 할인</em></span><b>15,000원</b></span>
+          <span class="price"><span>재관람 <em>50% 할인</em><small>티켓 소지자</small></span><b>15,000원</b></span>
         </dd></div>
         <div><dt>예매처</dt><dd>NOL ticket</dd></div>
       </dl>
@@ -458,6 +462,11 @@ html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
     else { cEl.textContent='공연이 종료되었습니다'; }
   }
   tickCount(); setInterval(tickCount,1000);
+  /* open-event price: shown only 11.17 12:00 – 11.18 12:00 (KST) */
+  var evt=document.getElementById('evt');
+  var EV_S=new Date('2026-11-17T12:00:00+09:00').getTime(), EV_E=new Date('2026-11-18T12:00:00+09:00').getTime();
+  function tickEvt(){ var n=Date.now(); evt.hidden=!(n>=EV_S&&n<EV_E); }
+  tickEvt(); setInterval(tickEvt,60000);
 })();
 </script>
 </body>
