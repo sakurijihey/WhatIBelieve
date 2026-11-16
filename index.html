@@ -316,7 +316,7 @@ html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
           <span class="price"><span>정가</span><b>30,000원</b></span>
           <span class="ev" id="evt" hidden>
             <span class="ev-top"><span class="ev-name">오픈 이벤트 특가<em>30% 할인</em></span><b>21,000원</b></span>
-            <small class="ev-per">예매 11.17 ~ 11.18</small>
+            <small class="ev-per">예매 11.17 12시 ~ 11.18 12시</small>
             <small class="ev-cd" id="evCd" aria-live="off"></small>
           </span>
           <span class="price"><span>학생·직장인 <em>10% 할인</em><small>학생증 또는 사원증 지참</small></span><b>27,000원</b></span>
@@ -459,7 +459,7 @@ html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
   });
 
   /* countdown to ticket opening (KST) */
-  var OPEN=new Date('2026-11-17T00:00:00+09:00').getTime(), END=new Date('2026-12-06T20:00:00+09:00').getTime();
+  var OPEN=new Date('2026-11-17T12:00:00+09:00').getTime(), END=new Date('2026-12-06T20:00:00+09:00').getTime();
   var cEl=document.getElementById('count');
   function pad(n){return n<10?'0'+n:''+n;}
   function tickCount(){
@@ -471,7 +471,7 @@ html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
     else { cEl.textContent='공연이 종료되었습니다'; }
   }
   tickCount(); setInterval(tickCount,1000);
-  /* open-event price: shown 11.16 20:55 – 11.18 12:00 (KST); sale runs 11.17 12:00 – 11.18 00:00 */
+  /* open-event price: shown 11.16 20:55 – 11.18 12:00 (KST); sale runs 11.17 12:00 – 11.18 12:00 */
   var evt=document.getElementById('evt'), evCd=document.getElementById('evCd');
   var EV_S=new Date('2026-11-16T20:55:00+09:00').getTime(), SALE_S=OPEN, EV_E=new Date('2026-11-18T12:00:00+09:00').getTime();
   function fmt(ms){ var s=Math.max(0,Math.floor(ms/1000)), d=Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), sec=s%60; return (d>0?'D-'+d+' ':'')+pad(h)+':'+pad(m)+':'+pad(sec); }
