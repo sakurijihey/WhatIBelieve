@@ -462,9 +462,9 @@ html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
     else { cEl.textContent='공연이 종료되었습니다'; }
   }
   tickCount(); setInterval(tickCount,1000);
-  /* open-event price: shown only 11.17 12:00 – 11.18 12:00 (KST) */
+  /* open-event price: shown 11.16 20:55 – 11.18 12:00 (KST) */
   var evt=document.getElementById('evt');
-  var EV_S=new Date('2026-11-17T12:00:00+09:00').getTime(), EV_E=new Date('2026-11-18T12:00:00+09:00').getTime();
+  var EV_S=new Date('2026-11-16T20:55:00+09:00').getTime(), EV_E=new Date('2026-11-18T12:00:00+09:00').getTime();
   function tickEvt(){ var n=Date.now(); evt.hidden=!(n>=EV_S&&n<EV_E); }
   tickEvt(); setInterval(tickEvt,60000);
 })();
