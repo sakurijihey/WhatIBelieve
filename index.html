@@ -146,8 +146,8 @@ main{position:relative;z-index:1}
 .info dd small{display:block;color:var(--dim);font-size:.82rem}
 .price{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums}
 .price b{white-space:nowrap}
-.price+.price{margin-top:.9rem}
-.ev{display:block;margin-bottom:.9rem;padding:.8rem .75rem;border:1.5px solid var(--green);border-radius:12px;background:rgba(24,226,76,.08)}
+.price+.price,.ev+.price{margin-top:.9rem}
+.ev{display:block;margin-top:.9rem;padding:.8rem .75rem;border:1.5px solid var(--green);border-radius:12px;background:rgba(24,226,76,.08)}
 .ev-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .ev-name{display:flex;flex-direction:column;gap:.15rem}
 .ev-name em{font-style:normal;color:var(--green);font-size:.85rem}
@@ -313,12 +313,12 @@ html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
         <div><dt>기간</dt><dd>2026.11.29(일) – 12.06(일)<small>월요일 휴연 · 러닝타임 80분</small></dd></div>
         <div><dt>장소</dt><dd>삼일로창고극장<small>서울 중구 삼일대로9길 12</small></dd></div>
         <div><dt>티켓</dt><dd>
+          <span class="price"><span>정가</span><b>30,000원</b></span>
           <span class="ev" id="evt" hidden>
             <span class="ev-top"><span class="ev-name">오픈 이벤트 특가<em>30% 할인</em></span><b>21,000원</b></span>
-            <small class="ev-per">예매 11.17 12시 ~ 11.18 12시</small>
+            <small class="ev-per">예매 11.17 ~ 11.18</small>
             <small class="ev-cd" id="evCd" aria-live="off"></small>
           </span>
-          <span class="price"><span>정가</span><b>30,000원</b></span>
           <span class="price"><span>학생·직장인 <em>10% 할인</em><small>학생증 또는 사원증 지참</small></span><b>27,000원</b></span>
           <span class="price"><span>예술인패스 <em>15% 할인</em></span><b>25,500원</b></span>
           <span class="price"><span>재관람 <em>50% 할인</em><small>티켓 소지자</small></span><b>15,000원</b></span>
